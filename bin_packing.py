@@ -51,4 +51,4 @@ def calculate_best_investment(*args, **kwargs):
 
 
 if __name__ == '__main__':
-    get_best_stocks()
+    calculate_best_investment()
