@@ -3,6 +3,8 @@ from flask import Flask
 from flask import request
 from flask import json
 from prophet import Mprophet
+
+import flask
 import os
 import shutil
 import csv
@@ -15,7 +17,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+    return flask.redirect('/static/index.html', code=302)
 
 @app.route('/data', methods=['GET'])
 def get_data():
@@ -26,7 +28,7 @@ def get_data():
     data_table = predict(period)
     result = calculate_best_investment(data_table, money)
      
-    return result
+    return jsonify(result)
 
 def predict(period):
     
