@@ -1,0 +1,144 @@
+<!DOCTYPE HTML>
+<html>
+	<head>
+		<title>Stock market prediction</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+	</head>
+	<body>
+
+
+
+		<!-- Banner -->
+			<section id="banner">
+				<h1>Stock Market Prediction</h1>
+				<p>Let's make some money :)</p>
+			</section>
+
+		<!-- One -->
+			<section id="one" class="wrapper">
+				<div class="inner">
+					<div class="flex flex-3">
+						<article>
+							<header>
+								<h3>SARIMA</h3>
+							</header>
+							<p>In statistics and econometrics, and in particular in time series analysis, an Seasonal autoregressive integrated moving average (SARIMA) model is a generalization of an autoregressive moving average (ARMA) model ...</p>
+							<footer>
+								<a href="https://en.wikipedia.org/wiki/Autoregressive_integrated_moving_average" class="button special">More</a>
+							</footer>
+						</article>
+						<article>
+							<header>
+								<h3>LSTM</h3>
+							</header>
+							<p>Long short-term memory (LSTM) block or network is a simple recurrent neural network which can be used as a building component or block (of hidden layers) for an eventually bigger recurrent neural network</p>
+							<footer>
+								<a href="https://en.wikipedia.org/wiki/Long_short-term_memory" class="button special">More</a>
+							</footer>
+						</article>
+						<article>
+							<header>
+								<h3>Prophet</h3>
+							</header>
+							<p>It is based on an additive model where non-linear trends are fit with yearly and weekly seasonality, plus holidays. It works best with daily periodicity data with at least one year of historical data.</p>
+							<footer>
+								<a href="https://facebook.github.io/prophet/" class="button special">More</a>
+							</footer>
+						</article>
+					</div>
+				</div>
+			</section>
+
+		<!-- Two -->
+			<section id="two" class="wrapper style1 special">
+				<h2 style="color:#FFFFFF">Let's get started!</h2>
+				Invest $
+				<input type="text" name="query" id="amount" value="" placeholder="00"> 
+				for
+				<input type="text" name="query" id="period_value" value="" placeholder="00">
+				<br>
+				<select name="category" id="period_multiplier" style="text-align-last: center;">
+					<option value="">- Category -</option>
+					<option selected="selected" value="1">Days</option>
+					<option value="1">Weeks</option>
+					<option value="1">Months</option>
+					<option value="1">Years</option>
+				</select>
+				<br>
+				<div>
+					<a  onclick="predict()" class="button alt big">Predict</a></div>
+				<br>
+				<img id="loading" src="http://www.wallies.com/filebin/images/loading_apple.gif" width="40" height="40">
+				<div id="results">
+					<h3>RESULTS</h3>
+					<div class="table-wrapper">
+						<table id="table">
+							<thead>
+								<tr>
+									<th style="text-align: center;width: 33%;">Name</th>
+									<th style="text-align: center;width: 33%;">Quantity</th>
+									<th style="text-align: center;width: 33%;">Total Price</th>
+								</tr>
+							</thead>
+							<tbody>
+								
+							</tbody>
+							<tfoot>
+								<tr>
+									<td colspan="2"></td>
+									<td id="total">78.34$</td>
+								</tr>
+							</tfoot>
+						</table>
+					</div>
+				</div>
+			</section>
+
+		<!-- Three -->
+			<section id="three" class="wrapper special">
+				<div class="inner">
+					<header>
+						<h2>Team</h2>
+					</header>
+					<div class="flex flex-4">
+							<div class="box person">
+								<div class="image round">
+									<img src="images/pic03.jpg" alt="Person 1" />
+								</div>
+							<a href="https://www.facebook.com/gurnoor.singh2">
+								<h3>Gurnoor Singh</h3>
+							</a>
+							</div>
+						<div class="box person">
+							<div class="image round">
+								<img src="images/pic04.jpg" alt="Person 2" />
+							</div>
+							<a href="https://www.facebook.com/deepika.kalani.9?ref=br_rs">
+								<h3>Deepika Kalani</h3>
+							</a>
+						</div>
+						<div class="box person">
+							<div class="image round">
+								<img src="images/pic05.jpg" alt="Person 3" />
+							</div>
+							<a href="https://www.facebook.com/madhur.khandelwal.7?ref=bookmarks">
+								<h3>Madhur Khandelwal</h3>
+							</a>
+						</div>
+					</div>
+				</div>
+			</section>
+
+
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+			<script src="assets/js/smp.js"></script>
+
+	</body>
+</html>
