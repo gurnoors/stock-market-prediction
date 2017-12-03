@@ -50,8 +50,7 @@ def calculate_best_investment(input, budget):
       "sarima": {},
       "somethingelse": {}
     }
-    sample_json = json.dumps(sample)
-    return sample_json
+    return sample
 
 
 if __name__ == '__main__':
