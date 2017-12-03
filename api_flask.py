@@ -8,7 +8,6 @@ import shutil
 import csv
 import pandas as pd
 import datetime
-import flask
 
 
 app = Flask(__name__)
@@ -16,7 +15,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-     flask.redirect("static/index.html", code=302)
+    return "Hello, World!"
 
 @app.route('/data', methods=['GET'])
 def get_data():
@@ -34,12 +33,12 @@ def predict(period):
 	
 	models = list()
 	
-	if(os.path.exists('output')):
+	#if(os.path.exists('output')):
 		
-		shutil.rmtree('output')
+	#	shutil.rmtree('output')
 	
-	os.makedirs('output/models/mprophet')
-	os.makedirs('output/prediction/mprophet')
+	#os.makedirs('output/models/mprophet')
+	#os.makedirs('output/prediction/mprophet')
 	
 	model_prophet = Mprophet()
 	models.append(model_prophet)
@@ -48,7 +47,7 @@ def predict(period):
 		    print filename    
 		    if os.path.isfile('dataTest/' + filename):
 			print("Path exists: {}".format(filename))
-			model.train_model(filename)
+			#model.train_model(filename)
 			out_filename = filename
 			model_prophet.predict(int(period), out_filename)
 
