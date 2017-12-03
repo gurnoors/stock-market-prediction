@@ -8,6 +8,7 @@ import shutil
 import csv
 import pandas as pd
 import datetime
+import flask
 
 
 app = Flask(__name__)
@@ -15,7 +16,7 @@ app = Flask(__name__)
 
 @app.route('/')
 def index():
-    return "Hello, World!"
+     flask.redirect("static/index.html", code=302)
 
 @app.route('/data', methods=['GET'])
 def get_data():
