@@ -7,6 +7,7 @@ import os
 import shutil
 import csv
 import pandas as pd
+import datetime
 
 
 app = Flask(__name__)
@@ -50,10 +51,8 @@ def predict(period):
 			out_filename = filename
 			model_prophet.predict(int(period), out_filename)
 
-	#return "Predicted successfully"
-
-	data_table = {}
-	"""	
+	
+	
 	mdata = {}
 	ldata = {}
 	adata = {}
@@ -63,22 +62,57 @@ def predict(period):
 	data_table['lstm'] = ldata
 	data_table['sarima'] = adata
 
+
+	codes = pd.read_csv('BSE-datasets-codes.csv', sep=',', header = None)
+	#print codes
+	df1 = codes.to_dict(orient = 'records')
+	#print df1
+
+	dict_codes = dict()
+	for element in df1:
+		dict_codes[element[0]] = element[1]
+	    
+	json_data = {}
 	for filename in os.listdir('output/prediction/mprophet'):
-		
+		data_modelp = dict()	
 		print("Prediction Filename :{}".format(filename))
 		
-		df = pd.read_csv('output/prediction/mprophet/' + filename)
-		df = df.filter(['ds', 'yhat'], axis=1)
-		print df	
-	
-		data_table['df'] = df
-	"""
-	return data_table
+		for filename in os.listdir('output/prediction/mprophet'):
+			
+			
+			df = pd.read_csv('output/prediction/mprophet/' + filename, sep='\t')
+			df = df.filter(['ds', 'yhat'], axis=1)
+			df['ds'] = pd.to_datetime(df['ds'], format="%Y-%m-%d")
+			now = datetime.datetime.now()
+		    
+			todays_price = str(df.loc[df['ds'] == str(now.date()), 'yhat']).split()[1]
+		    
+		 	mask = (df['ds'] > str(now.date()))
+		    
+		  	df = df.loc[mask]
+		    	max_price = str(df.loc[df['yhat'].idxmax()]).split()[4]
+		    	max_price_date = str(df.loc[df['yhat'].idxmax()]).split()[1]
+		    
+		    	last_row = df.tail(1)
+		    	predicted_price = str(last_row['yhat']).split()[1]
+
+		    
+		    	file_code = filename.split('.')[0].split('_')
+
+		    	company_name = dict_codes[file_code[0] + '/' + file_code[1]] 
+		    	print company_name
+    
+			data = {'name': company_name, 'today_price': todays_price , 'predicted_price': predicted_price, 'max_price': max_price, 'max_price_date': max_price_date}
+		data_modelp[company_name] = data
+    	
+	json_data = json.dumps(data_modelp)
+
+	return json_data
 
 def calculate_best_investment(data_table):
 	#result = functon from Gurnoor
-	result = {'res': 'true'}
-	return jsonify(result)
+	result = data_table
+	return result
     
 if __name__ == '__main__':
 	app.run(debug=True)
