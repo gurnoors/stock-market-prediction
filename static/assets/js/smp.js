@@ -48,7 +48,7 @@ function predict(){
 
         let table = $("#table tbody");
         $.each(data['prophet']['stocks'], function(idx, elem){
-            table.append("<tr><td>"+elem.name+"</td><td>"+elem.quantity+"</td>   <td>"+elem.quantity+"$</td></tr>");
+            table.append("<tr><td>"+elem.name+"</td><td>"+elem.quantity+"</td>   <td>"+elem.total_price+"$</td></tr>");
         });
 
         let total = $("#total")[0];
